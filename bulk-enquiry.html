@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bulk Enquiry · Krickscricket</title><meta name="description" content="Bulk cricket bats and kit for clubs, academies and teams.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kricks.css">
+<style>
+.ph{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,28px);padding-top:clamp(40px,5vw,80px);align-items:start;row-gap:40px}
+.ph h1{grid-column:1 / 8;font-size:var(--step-giant);line-height:.82}
+.ph h1 span{color:var(--accent)}
+.band{grid-column:1 / -1;aspect-ratio:21/7;overflow:hidden}
+.band img{width:100%;height:100%;object-fit:cover;display:block;animation:kb 12s ease-out forwards}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
+.ph .lead{grid-column:8 / 13;align-self:end;font-size:22px;max-width:36ch}
+.side{grid-column:1 / 6;display:grid;gap:28px}
+.side .blk{background:var(--surface);padding:24px;display:grid;gap:6px}
+.side .blk h2{font-size:34px}
+.side .blk p{font-size:18px}
+.side .blk a{color:var(--accent)}
+form.f{grid-column:7 / 13;display:grid;gap:18px}
+form.f .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.thanks{grid-column:7 / 13;background:var(--chalk);color:var(--navy-ink);padding:32px;display:grid;gap:14px}
+.thanks h2{font-size:56px}
+.faq{padding-top:clamp(120px,12vw,200px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:32px}
+.faq h2{grid-column:1 / 6;font-size:clamp(48px,5vw,84px)}
+.faq .qs{grid-column:7 / 13;display:grid;gap:8px}
+.faq details{background:var(--surface);padding:0 20px}
+.faq summary{cursor:pointer;font-family:var(--display);font-size:28px;padding:18px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::after{content:"+";transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{font-size:18px;padding-bottom:20px;max-width:56ch}
+.tiers{width:100%;border-collapse:collapse;font-size:18px}
+.tiers th,.tiers td{text-align:left;padding:14px 0;border-bottom:1px solid #E6E3DE}
+.tiers th{font-weight:400;color:var(--muted)}
+.est{background:var(--chalk);color:var(--navy-ink);padding:24px;display:grid;gap:14px}
+.est h2{font-size:40px}
+.est .big{font-family:var(--display);font-size:56px;line-height:.9}
+.est select{background:#222;border:0;padding:12px;font-size:17px;color:#fff}
+.est input[type=range]{width:100%;accent-color:var(--red);height:40px}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.checks label{display:flex;gap:10px;align-items:center;background:var(--surface);padding:12px 14px;font-size:17px;cursor:pointer}
+.checks input{width:20px;height:20px;accent-color:var(--accent)}
+@media (max-width:960px){.ph h1,.ph .lead,.side,form.f,.thanks,.faq h2,.faq .qs{grid-column:1 / -1}form.f .two{grid-template-columns:1fr}}
+</style></head>
+<body data-page="bulk"><header id="hdr"></header>
+<main>
+<section class="frame ph">
+  <h1>Bulk enquiry<span>.</span></h1>
+  <p class="lead">Bats, pads, gloves and bags for clubs, academies, schools and corporate teams, with your crest and colours on the stickers.</p>
+  <div class="band"><img src="img/adelaide.jpg" alt="A cricket ground at dusk"></div>
+  <div class="side">
+    <div class="est rv" aria-live="polite">
+      <h2>Estimate your order</h2>
+      <label for="bm" class="sr">Bat</label><select id="bm"></select>
+      <label for="bq" style="font-size:17px">Number of bats: <b id="bqv">20</b></label>
+      <input type="range" id="bq" min="10" max="150" value="20">
+      <span class="big price" id="btot"></span>
+      <p style="font-size:17px" id="bnote"></p>
+    </div>
+    <table class="tiers rv"><caption class="sr">Squad pricing</caption><thead><tr><th scope="col">Bats</th><th scope="col">Saving per bat</th></tr></thead>
+    <tbody><tr><td>10 to 24</td><td>8% off</td></tr><tr><td>25 to 49</td><td>12% off</td></tr><tr><td>50 or more</td><td>15% off</td></tr></tbody></table>
+  </div>
+  <form class="f" id="form" novalidate>
+    <div class="two"><div class="field"><label for="club">Club, academy or company</label><input id="club" required autocomplete="organization"></div><div class="field"><label for="ctry">Country</label><input id="ctry" required autocomplete="country-name"></div></div>
+    <div class="two"><div class="field"><label for="n">Your name</label><input id="n" required autocomplete="name"></div><div class="field"><label for="e">Email</label><input id="e" type="email" required autocomplete="email"></div></div>
+    <fieldset style="border:0;padding:0;margin:0;display:grid;gap:10px"><legend style="font-size:16px;color:var(--muted);padding:0;margin-bottom:10px">What do you need?</legend>
+      <div class="checks"><label><input type="checkbox" checked> Leather bats</label><label><input type="checkbox"> Tennis bats</label><label><input type="checkbox"> Pads</label><label><input type="checkbox"> Gloves</label><label><input type="checkbox"> Helmets</label><label><input type="checkbox"> Kit bags</label><label><input type="checkbox"> Match balls</label></div></fieldset>
+    <div class="field"><label for="logo">Your crest or logo (PNG, SVG or PDF)</label><input id="logo" type="file" accept=".png,.svg,.pdf,.jpg,.jpeg"></div>
+    <div class="field"><label for="d">Needed by</label><input id="d" type="date"></div>
+    <div class="field"><label for="m">Anything else we should know</label><textarea id="m" placeholder="Sizes, colours, age groups, delivery address…"></textarea></div>
+    <p id="err" style="color:#B3261E;font-size:17px" hidden>Please add your club, country, name and a valid email.</p>
+    <button class="btn" type="submit" style="justify-self:start">Send enquiry <span class="ar">→</span></button>
+  </form>
+</section></main>
+<footer id="ftr"></footer>
+<script src="kricks.js"></script>
+<script>(function(){const $=s=>document.querySelector(s);
+const bats=K.products.filter(p=>p.cat!=='acc');
+$('#bm').innerHTML=bats.map(p=>`<option value="${p.id}">${p.name} · ${p.sub}</option>`).join('');
+$('#bm').value='club';
+function est(){const p=K.byId($('#bm').value),q=+$('#bq').value,d=q>=50?.15:q>=25?.12:.08;$('#bqv').textContent=q;const t=Math.round(p.price*(1-d))*q;$('#btot').dataset.inr=t;$('#btot').textContent=K.money(t);$('#bnote').innerHTML=`${Math.round(d*100)}% off: <span data-inr="${Math.round(p.price*(1-d))}"></span> a bat instead of <span data-inr="${p.price}"></span>. Crest stickers included.`;K.paint($('#bnote'))}
+$('#bm').addEventListener('change',est);$('#bq').addEventListener('input',est);document.addEventListener('kricks:cur',est);est();
+$('#form').addEventListener('submit',e=>{e.preventDefault();const ok=$('#club').value.trim()&&$('#ctry').value.trim()&&$('#n').value.trim()&&/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('#e').value);$('#err').hidden=!!ok;if(!ok)return;
+ e.target.outerHTML=`<div class="thanks" role="status"><h2>Thanks, ${K.esc($('#club').value.trim())}</h2><p style="font-size:19px">We've got your enquiry for about ${$('#bq').value} bats. We'll send a quote and sticker proofs to ${K.esc($('#e').value)} within two working days.</p><a class="btn navy" href="index.html" style="justify-self:start">Back to the shop <span class="ar">→</span></a></div>`});
+})();</script>
+</body></html>

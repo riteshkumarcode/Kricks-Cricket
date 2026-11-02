@@ -1,0 +1,69 @@
+/* Krickscricket — Design Tokens & Core System
+   Black and white, one vibrant burnt orange on the action.
+   One radius (0), one button shape (square), one pair of outer margins. */
+
+:root {
+  /* Surfaces & Canvas */
+  --bg: #FFFFFF;
+  --surface: #F4F3F0;
+  --surface-hover: #ECEAE5;
+  --surface-active: #E9E7E2;
+  
+  /* Inks & Lines */
+  --ink: #111111;
+  --muted: #6B6966;
+  --line: #E6E3DE;
+
+  /* Accent */
+  --accent: #C8501A;
+  --accent-hover: #A9420F;
+  --accent-ink: #FFFFFF;
+  
+  /* Domain Materials & Inv Container */
+  --willow: #E3C78E;
+  --red: #C8501A;
+  --pitch: #111111;
+  --chalk: #111111;
+  --navy-ink: #FFFFFF;
+  --dark-subtle: #1C1C1C;
+  --dark-border: #2C2C2C;
+  --dark-muted: #8C8984;
+
+  /* Fonts */
+  --display: var(--font-bebas, "Bebas Neue"), "Oswald", "Arial Narrow", Impact, sans-serif;
+  --text: var(--font-jost, "Jost"), "Futura", "Century Gothic", "Segoe UI", sans-serif;
+
+  /* Margins */
+  --m: max(16px, env(safe-area-inset-left, 0px));
+  --mr: max(16px, env(safe-area-inset-right, 0px));
+
+  /* Fluid Typography Steps */
+  --step-small: clamp(0.875rem, 0.84rem + 0.1vw, 0.9375rem);
+  --step-body: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-lead: clamp(1.2rem, 1.05rem + 0.6vw, 1.55rem);
+  --step-head: clamp(2.75rem, 1.4rem + 5vw, 5.75rem);
+  --step-giant: clamp(4.5rem, 2rem + 12vw, 13rem);
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-wipe: cubic-bezier(0.77, 0, 0.18, 1);
+  
+  color-scheme: light;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --m: max(28px, env(safe-area-inset-left, 0px));
+    --mr: max(28px, env(safe-area-inset-right, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+}
+

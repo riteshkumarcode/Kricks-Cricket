@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Accessories · Krickscricket</title><meta name="description" content="Gloves, pads, helmets, kit bags, grips and balls. Everything you carry out to the middle, in Kricks colours.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kricks.css">
+<style>
+.top{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding:clamp(40px,6vw,96px) 28px clamp(40px,4vw,64px);align-items:end;min-height:min(62svh,620px);margin-bottom:40px;overflow:hidden;color:#fff;isolation:isolate}
+.top > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;animation:kb 12s ease-out forwards}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
+.top::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(0,0,0,.82),rgba(0,0,0,.25) 70%)}
+.top h1 span{color:var(--accent)}
+.top h1{grid-column:1 / 8;font-size:var(--step-giant);line-height:.82}
+.top .intro{grid-column:8 / 13;display:grid;gap:18px}
+.top .intro p{font-size:20px}
+.bar2{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;margin-bottom:32px}
+.bar2 .sort{display:flex;gap:10px;align-items:center;font-size:16px}
+.bar2 select{background:var(--surface);border:0;padding:12px 14px;font-size:17px}
+.count{font-size:17px;color:var(--muted)}
+.guide{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding-top:clamp(120px,12vw,200px);align-items:start}
+.guide h2{grid-column:1 / 6;font-size:clamp(48px,5vw,84px)}
+.guide dl{grid-column:7 / 13;margin:0;display:grid;gap:28px}
+.guide dt{font-family:var(--display);font-size:32px;line-height:1}
+.guide dd{margin:8px 0 0;font-size:18px;max-width:52ch}
+.empty{grid-column:1 / -1;padding:60px 0;font-size:20px}
+@media (max-width:860px){.top h1,.top .intro,.guide h2,.guide dl{grid-column:1 / -1}.top{row-gap:20px}.guide{row-gap:28px}}
+</style></head>
+<body data-page="acc"><header id="hdr"></header>
+<main>
+<section class="frame">
+  <div class="top"><img src="img/stumps.jpg" alt=""><h1>Accessories<span>.</span></h1><div class="intro"><p>Gloves, pads, helmets, kit bags, grips and balls. Everything you carry out to the middle, in Kricks colours.</p></div></div>
+  <div class="bar2"><div class="opts" id="filters" role="group" aria-label="Filter"><button class="opt" type="button" data-f="all" aria-pressed="true">All</button><button class="opt" type="button" data-f="protect" aria-pressed="false">Protection</button><button class="opt" type="button" data-f="bags" aria-pressed="false">Bags</button><button class="opt" type="button" data-f="balls" aria-pressed="false">Balls</button><button class="opt" type="button" data-f="care" aria-pressed="false">Bat care</button></div>
+    <div class="sort"><span class="count" id="count"></span><label for="sort" class="sr">Sort</label><select id="sort"><option value="feat">Featured</option><option value="low">Price, low to high</option><option value="high">Price, high to low</option></select></div></div>
+  <div class="tiles" id="grid"></div>
+</section>
+<section class="frame guide" aria-labelledby="gh"><h2 id="gh" class="rv">Getting the fit right</h2><dl><div class="rv"><dt>Gloves</dt><dd>Your fingertips should sit just short of the end of the finger rolls. Men's fits most adult hands; youth fits players up to about 15.</dd></div><div class="rv"><dt>Pads</dt><dd>The centre of the knee roll should sit on the centre of your knee when you stand normally.</dd></div><div class="rv"><dt>Helmet</dt><dd>Measure around your head just above the eyebrows. The grille should not touch your nose when you look forward.</dd></div><div class="rv"><dt>Grips and toe guards</dt><dd>Fit a fresh grip when the old one turns smooth or splits, and a toe guard on any bat used on damp grounds.</dd></div></dl></section></main>
+<footer id="ftr"></footer>
+<script src="kricks.js"></script>
+<script>(function(){const $=s=>document.querySelector(s);
+const GROUPS={'gloves': 'protect', 'pads': 'protect', 'helmet': 'protect', 'kitbag': 'bags', 'leather-balls': 'balls', 'tennis-balls': 'balls', 'grips': 'care', 'toe-guard': 'care'};
+const all=K.products.filter(p=>p.cat==='acc');
+let f='all',s='feat';
+const val=p=>'group'==='grade'?String(p.grade):'group'==='wood'?(p.sub.includes('Popular')?'Popular':'Kashmir'):GROUPS[p.id];
+function draw(){let l=all.filter(p=>f==='all'||val(p)===f);if(s==='low')l=[...l].sort((a,b)=>a.price-b.price);if(s==='high')l=[...l].sort((a,b)=>b.price-a.price);
+ $('#grid').style.gridTemplateColumns=(l.length%4===0&&innerWidth>860)?'repeat(4,minmax(0,1fr))':'';$('#grid').innerHTML=l.length?l.map(K.tile).join(''):'<p class="empty">Nothing in this filter right now.</p>';$('#count').textContent=l.length+(l.length===1?' product':' products');K.paint($('#grid'));K.reveal($('#grid'));}
+$('#filters').addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;f=b.dataset.f;$('#filters').querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()});
+$('#sort').addEventListener('change',e=>{s=e.target.value;draw()});
+draw();})();</script>
+</body></html>

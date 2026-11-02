@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cart · Krickscricket</title><meta name="description" content="Your Krickscricket cart.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kricks.css">
+<style>
+.ct{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,28px);padding-top:clamp(40px,5vw,80px);align-items:start}
+.ct h1{grid-column:1 / -1;font-size:var(--step-giant);line-height:.82;margin-bottom:48px}
+.lines{grid-column:1 / 8;display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.line{display:grid;grid-template-columns:120px 1fr auto;gap:20px;background:var(--surface);padding:16px;align-items:center}
+.line .th{aspect-ratio:1;background:#EDEDED;display:grid;place-items:center;overflow:hidden}
+.line .th svg{height:90%;width:auto;transform:rotate(30deg)}
+.line .th.acc svg{height:70%;transform:none}
+.line h2{font-size:32px;line-height:.95}
+.line .o{font-size:16px;color:var(--muted);margin-top:4px}
+.line .r{display:grid;gap:10px;justify-items:end}
+.line .r .price{font-size:22px}
+.qty{display:inline-flex;background:var(--bg)}
+.qty button{width:44px;height:44px;border:0;background:none;font-family:var(--display);font-size:22px;cursor:pointer}
+.qty output{width:36px;display:grid;place-items:center;font-size:18px}
+.rm{background:none;border:0;color:var(--muted);font-size:16px;cursor:pointer;text-decoration:underline}
+.rm:hover{color:var(--ink)}
+.sum{grid-column:9 / 13;position:sticky;top:96px;background:var(--chalk);color:var(--navy-ink);padding:28px;display:grid;gap:16px}
+.sum h2{font-size:44px}
+.sum dl{margin:0;display:grid;gap:10px;font-size:18px}
+.sum dl div{display:flex;justify-content:space-between;gap:16px}
+.sum dt{color:#BDBAB4}
+.sum .tot{font-family:var(--display);font-size:36px}
+.sum p{font-size:16px;color:#BDBAB4}
+.sum .btn{width:100%}
+.empty{grid-column:1 / -1;display:grid;gap:24px;justify-items:start;font-size:20px}
+@media (max-width:960px){.lines,.sum{grid-column:1 / -1}.sum{position:static;margin-top:28px}.line{grid-template-columns:84px 1fr}.line .r{grid-column:1 / -1;grid-auto-flow:column;justify-content:space-between;align-items:center}}
+</style></head>
+<body data-page="cart"><header id="hdr"></header>
+<main><section class="frame ct" id="checkout"><h1>Your cart</h1><ul class="lines" id="lines"></ul><aside class="sum" id="sum" aria-labelledby="sumT"></aside></section></main>
+<footer id="ftr"></footer>
+<script src="kricks.js"></script>
+<script>(function(){const $=s=>document.querySelector(s);
+function art(l){const p=K.byId(l.id);if(l.bat)return K.bat(Object.assign({label:l.name},l.bat));return p?K.art(p):''}
+function draw(){
+  const c=K.cart;
+  if(!c.length){$('#lines').outerHTML='<div class="empty" id="lines"><p>Your cart is empty. Start with a bat.</p><div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="leather-bats.html">Leather bats <span class="ar">→</span></a><a class="btn ink" href="tennis-bats.html">Tennis bats</a><a class="btn ink" href="custom-bat.html">Build a custom bat</a></div></div>';$('#sum').hidden=true;return}
+  $('#lines').innerHTML=c.map((l,i)=>{const p=K.byId(l.id);return `<li class="line"><div class="th${p&&p.cat==='acc'?' acc':''}">${art(l)}</div>
+   <div><h2>${K.esc(l.name)}</h2>${l.opts?`<p class="o">${K.esc(l.opts)}</p>`:''}</div>
+   <div class="r"><span class="price" data-inr="${l.price*l.qty}"></span><div class="qty"><button type="button" data-i="${i}" data-d="-1" aria-label="One fewer">−</button><output>${l.qty}</output><button type="button" data-i="${i}" data-d="1" aria-label="One more">+</button></div><button class="rm" type="button" data-rm="${i}">Remove</button></div></li>`}).join('');
+  const sub=c.reduce((n,l)=>n+l.price*l.qty,0), ship=sub>=10000||K.cur!=='INR'?0:299;
+  $('#sum').innerHTML=`<h2 id="sumT">Order summary</h2><dl><div><dt>Items (${K.count()})</dt><dd class="price" data-inr="${sub}"></dd></div><div><dt>Shipping</dt><dd>${K.cur!=='INR'?'Calculated at checkout':ship?'<span data-inr="299"></span>':'Free'}</dd></div><div class="tot"><dt>Total</dt><dd class="price" data-inr="${sub+ship}"></dd></div></dl>
+   <a class="btn" href="#checkout">Go to checkout <span class="ar">→</span></a><p>Free shipping in India on orders over <span data-inr="10000"></span>. International duties are shown at checkout.</p>`;
+  K.paint();
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-d]');if(b){const l=K.cart[+b.dataset.i];l.qty=Math.max(1,Math.min(20,l.qty+ +b.dataset.d));K.saveCart();draw()}const r=e.target.closest('[data-rm]');if(r){K.cart.splice(+r.dataset.rm,1);K.saveCart();draw()}});
+document.addEventListener('kricks:cur',draw);
+if(!K.cart.length&&!K.store.get('kricks-seeded',false)){K.cart=[{id:'pro-edition',name:'Pro Edition',opts:'Short Handle · 2lb 9oz · Knocked in',price:25799,qty:1},{id:'gloves',name:'Batting Gloves',opts:"Men's · Right-handed",price:2299,qty:1}];K.store.set('kricks-seeded',true);K.saveCart()}
+draw();
+})();</script>
+</body></html>

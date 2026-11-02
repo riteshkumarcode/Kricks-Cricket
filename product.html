@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pro Edition · Krickscricket</title><meta name="description" content="Cricket bat details, sizes and weights.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kricks.css">
+<style>
+.pdp{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,28px);padding-top:clamp(24px,3vw,40px);align-items:start}
+.gal{grid-column:1 / 8;position:sticky;top:96px;display:grid;gap:12px}
+.main{aspect-ratio:5/4;background:#EDEDED;display:grid;place-items:center;overflow:hidden;position:relative}
+.main svg{height:92%;width:auto;transform:rotate(-62deg);transition:transform .7s var(--ease)}
+.main.acc svg{height:62%;transform:none}
+.main[data-v="back"] svg{transform:rotate(-62deg) scaleX(-1)}
+.main[data-v="edge"] svg{transform:rotate(-62deg)}
+.thumbs{display:flex;gap:12px}
+.thumbs button{flex:1;max-width:120px;aspect-ratio:1;background:#EDEDED;border:3px solid transparent;display:grid;place-items:center;cursor:pointer;padding:6px;transition:border-color .2s}
+.thumbs button[aria-pressed="true"]{border-color:var(--ink)}
+.thumbs button svg{height:90%;width:auto;transform:rotate(30deg)}
+.thumbs button span{font-size:14px}
+.buy{grid-column:8 / 13;display:grid;gap:26px;padding-bottom:40px}
+.crumb{font-size:15px;color:var(--muted)}.crumb a{text-decoration:none}.crumb a:hover{color:var(--ink)}
+.buy h1{font-size:clamp(56px,6vw,104px);line-height:.85}
+.buy .sub{font-size:20px}
+.buy .pr{display:flex;gap:14px;align-items:baseline;font-size:30px}
+.buy .pr s{font-size:20px;color:var(--muted)}
+.grp{display:grid;gap:10px}
+.grp > span{font-size:16px;color:var(--muted)}
+.chk{display:flex;gap:14px;align-items:flex-start;background:var(--surface);padding:16px;cursor:pointer;font-size:17px}
+.chk input{width:22px;height:22px;accent-color:var(--accent);margin-top:2px;flex:none}
+.qty{display:inline-flex;background:var(--surface)}
+.qty button{width:48px;height:52px;border:0;background:none;font-family:var(--display);font-size:24px;cursor:pointer}
+.qty output{width:44px;display:grid;place-items:center;font-size:20px}
+.addrow{display:flex;gap:12px;flex-wrap:wrap}
+.addrow .btn{flex:1;min-width:220px}
+.notes{font-size:17px;display:grid;gap:6px}
+.spec{padding-top:clamp(120px,12vw,200px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:32px}
+.spec h2{grid-column:1 / 6;font-size:clamp(48px,5vw,84px)}
+.spec table{grid-column:7 / 13;border-collapse:collapse;font-size:18px;width:100%}
+.spec th,.spec td{text-align:left;padding:14px 0;border-bottom:1px solid #E6E3DE;vertical-align:top}
+.spec th{font-weight:400;color:var(--muted);width:40%}
+.care{padding-top:clamp(120px,12vw,200px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:32px}
+.care h2{grid-column:1 / 6;font-size:clamp(48px,5vw,84px)}
+.care ol{grid-column:7 / 13;margin:0;padding-left:1.2em;display:grid;gap:18px;font-size:19px}
+.rel{padding-top:clamp(120px,12vw,200px)}
+.rel h2{font-size:clamp(48px,5vw,84px);margin-bottom:40px}
+@media (max-width:960px){.gal,.buy,.spec h2,.spec table,.care h2,.care ol{grid-column:1 / -1}.gal{position:static}.buy{padding-top:28px}}
+</style></head>
+<body data-page="product"><header id="hdr"></header>
+<main>
+<section class="frame pdp">
+  <div class="gal"><div class="main" id="main" data-v="face"></div><div class="thumbs" id="thumbs"></div></div>
+  <div class="buy">
+    <p class="crumb" id="crumb"></p>
+    <div><h1 id="pName"></h1><p class="sub soft" id="pSub"></p></div>
+    <div class="pr price"><span id="pPrice"></span><s id="pWas"></s></div>
+    <p id="pBlurb" style="font-size:19px;max-width:48ch"></p>
+    <div id="optsWrap" style="display:grid;gap:22px"></div>
+    <div class="grp"><span>Quantity</span><div class="qty"><button type="button" id="minus" aria-label="One fewer">−</button><output id="q">1</output><button type="button" id="plus" aria-label="One more">+</button></div></div>
+    <div class="addrow"><button class="btn" id="add" type="button">Add to cart <span class="ar">→</span></button></div>
+    <div class="notes soft"><p>Dispatched from India within 3 working days.</p><p>Shipping to the UK, Australia, the UAE, the USA and more. Duties are shown at checkout.</p></div>
+  </div>
+</section>
+<section class="frame spec" aria-labelledby="specT"><h2 id="specT" class="rv">The details</h2><table id="spec" class="rv"></table></section>
+<section class="frame care" id="careSec" aria-labelledby="careT"><h2 id="careT" class="rv">Knocking in your bat</h2>
+<ol class="rv"><li>Rub a teaspoon of raw linseed oil into the face, edges and toe. Leave it to soak in overnight. Never oil the splice or the sticker.</li><li>Tap the face with a bat mallet for about two hours, slowly building up force. Round the edges and toe gently.</li><li>Face throw-downs with an old ball for a week, then play in the nets before using it in a match.</li><li>Add our knocking-in service and we do all of this for you before the bat ships.</li></ol></section>
+<section class="frame rel" aria-labelledby="relT"><h2 id="relT" class="rv">You may also like</h2><div class="tiles" id="rel"></div></section>
+</main>
+<footer id="ftr"></footer>
+<script src="kricks.js"></script>
+<script>(function(){const $=s=>document.querySelector(s);
+let p=K.byId(location.hash.slice(1))||K.byId('pro-edition');
+let q=1, sel={};
+function opts(p){
+  if(p.cat==='leather') return [['Size',p.id==='junior-harrow'?['Harrow']:['Short Handle','Long Handle','Harrow']],['Weight',p.id==='junior-harrow'?['2lb 3oz','2lb 4oz','2lb 5oz']:['2lb 8oz','2lb 9oz','2lb 10oz','2lb 11oz']]];
+  if(p.cat==='tennis') return [['Size',['Short Handle','Long Handle','Size 6']]];
+  if(['gloves','pads','helmet'].includes(p.id)) return [['Fit',['Men\'s','Youth']],...(p.id!=='helmet'?[['Hand',['Right-handed','Left-handed']]]:[])];
+  return [];
+}
+const CAT={leather:['Leather bats','leather-bats.html'],tennis:['Tennis bats','tennis-bats.html'],acc:['Accessories','accessories.html']};
+function render(){
+  document.title=p.name+' · Krickscricket';
+  const c=CAT[p.cat];
+  $('#crumb').innerHTML=`<a href="index.html">Home</a> / <a href="${c[1]}">${c[0]}</a> / ${p.name}`;
+  $('#pName').textContent=p.name; $('#pSub').textContent=p.sub; $('#pBlurb').textContent=p.blurb;
+  sel={}; q=1; $('#q').textContent=1;
+  const o=opts(p);
+  let h=o.map(([k,vals])=>{sel[k]=vals[0];return `<div class="grp"><span>${k}</span><div class="opts" data-k="${k}">${vals.map((v,i)=>`<button class="opt" type="button" aria-pressed="${i===0}">${v}</button>`).join('')}</div></div>`}).join('');
+  if(p.cat==='leather') h+=`<label class="chk"><input type="checkbox" id="knock"> <span>Knock it in for me, <span data-inr="800"></span>. We oil the bat and knock the face in by hand, so it's ready for the nets.</span></label>`;
+  if(p.cat!=='acc') h+=`<div class="field"><label for="eng">Engrave a name (free, up to 10 letters)</label><input id="eng" maxlength="10" autocomplete="off" placeholder="Optional"></div>`;
+  $('#optsWrap').innerHTML=h;
+  $('#optsWrap').querySelectorAll('.opts').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;sel[g.dataset.k]=b.textContent;g.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed',x===b))}));
+  const eng=$('#eng'); if(eng) eng.addEventListener('input',()=>{eng.value=eng.value.replace(/[^a-z ]/gi,'');view(curV)});
+  const k=$('#knock'); if(k) k.addEventListener('change',price);
+  // gallery
+  const views=p.cat==='acc'?[['face','Product']]:[['face','Face'],['back','Back'],['edge','Edge']];
+  $('#thumbs').innerHTML=views.map(([v,t],i)=>`<button type="button" data-v="${v}" aria-pressed="${i===0}" aria-label="${t} view">${p.cat==='acc'?`<span>${t}</span>`:K.bat(Object.assign({},p.bat,{view:v}))}</button>`).join('');
+  $('#thumbs').style.display=p.cat==='acc'?'none':'flex';
+  view('face');
+  // specs
+  const rows=p.cat==='acc'?[['Product',p.name],['Details',p.sub]]:[['Willow',p.sub],['Grains',p.grains],['Weight',p.weight],['Edges',p.edge],['Profile',p.profile],['Handle','Round, cane with rubber grip'],['Finish','Oiled, toe guard fitted']];
+  $('#spec').innerHTML='<tbody>'+rows.map(([a,b])=>`<tr><th scope="row">${a}</th><td>${b}</td></tr>`).join('')+'</tbody>';
+  $('#careSec').hidden=p.cat!=='leather';
+  const rel=K.products.filter(x=>x.cat===p.cat&&x.id!==p.id).slice(0,3);
+  $('#rel').innerHTML=rel.map(K.tile).join('');
+  price(); K.paint(); K.reveal();
+}
+let curV='face';
+function view(v){curV=v;const m=$('#main');m.dataset.v=v;m.className='main'+(p.cat==='acc'?' acc':'');
+  const eng=$('#eng');m.innerHTML=p.cat==='acc'?K.item(p.kind,p.c1,p.c2):K.bat(Object.assign({label:p.name+' '+v+' view'},p.bat,{view:v,name:v==='face'&&eng?eng.value:''}));
+  m.firstElementChild.animate([{opacity:0,transform:getComputedStyle(m.firstElementChild).transform+' translateY(20px)'},{opacity:1}],{duration:500,easing:'cubic-bezier(.2,.8,.2,1)'});
+  $('#thumbs').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===v));}
+$('#thumbs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)view(b.dataset.v)});
+function unit(){return p.price+($('#knock')&&$('#knock').checked?800:0)}
+function price(){$('#pPrice').dataset.inr=unit()*q;$('#pPrice').textContent=K.money(unit()*q);if(p.was){$('#pWas').dataset.inr=p.was*q;$('#pWas').textContent=K.money(p.was*q)}else{$('#pWas').textContent='';delete $('#pWas').dataset.inr}}
+$('#minus').onclick=()=>{q=Math.max(1,q-1);$('#q').textContent=q;price()};
+$('#plus').onclick=()=>{q=Math.min(20,q+1);$('#q').textContent=q;price()};
+$('#add').onclick=()=>{const bits=Object.values(sel);if($('#knock')&&$('#knock').checked)bits.push('Knocked in');if($('#eng')&&$('#eng').value)bits.push('Engraved "'+$('#eng').value.toUpperCase()+'"');K.add({id:p.id,name:p.name,opts:bits.join(' · '),price:unit(),qty:q})};
+addEventListener('hashchange',()=>{p=K.byId(location.hash.slice(1))||p;render();scrollTo(0,0)});
+document.addEventListener('kricks:cur',price);
+render();
+})();</script>
+</body></html>

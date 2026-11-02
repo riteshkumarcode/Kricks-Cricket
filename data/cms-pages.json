@@ -1,0 +1,48 @@
+[
+  {
+    "id": "page-about",
+    "slug": "about",
+    "title": "About Krickscricket",
+    "subtitle": "Heritage batmaking from J&K and Essex clefts.",
+    "content": "Founded by cricketers for cricketers, Krickscricket crafts bespoke cricket blades using traditional English and Kashmir willow. Every bat is pressed individually to achieve optimal rebound and ping.",
+    "status": "published",
+    "updatedAt": "2026-11-02T00:12:25.540Z"
+  },
+  {
+    "id": "page-shipping",
+    "slug": "shipping-returns",
+    "title": "Shipping & Returns",
+    "subtitle": "Insured domestic and international courier delivery.",
+    "content": "We deliver across India via Blue Dart and Delhivery, and worldwide via DHL Express. All orders are packed in rigid protective bat sleeves to ensure zero transit damage.",
+    "faqs": [
+      {
+        "q": "How long does shipping take?",
+        "a": "Standard dispatch takes 2–4 business days. Custom bats take 7–10 business days for pressing, shaping, and knocking-in."
+      },
+      {
+        "q": "What is your return policy?",
+        "a": "Non-customised bats can be returned within 14 days in original unused condition. Custom bats with engraved names are made to order and non-returnable unless defective."
+      }
+    ],
+    "status": "published",
+    "updatedAt": "2026-11-02T00:12:25.541Z"
+  },
+  {
+    "id": "page-privacy",
+    "slug": "privacy",
+    "title": "Privacy Policy",
+    "subtitle": "How we protect and manage your personal data.",
+    "content": "We treat your data with the utmost security. We never sell your personal information or share payment credentials. All payments are processed through Razorpay and Stripe with TLS 1.3 encryption.",
+    "status": "published",
+    "updatedAt": "2026-11-02T00:12:25.541Z"
+  },
+  {
+    "id": "page-terms",
+    "slug": "terms",
+    "title": "Terms of Service",
+    "subtitle": "Workshop rules, warranties and store conditions.",
+    "content": "All bats carry a 12-month workshop warranty against manufacturer defects in the handle and splice. Normal surface willow wear from match play is not covered under warranty.",
+    "status": "published",
+    "updatedAt": "2026-11-02T00:12:25.541Z"
+  }
+]

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Contact Us · Krickscricket</title><meta name="description" content="Contact Krickscricket about bats, sizes, orders and custom bats.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kricks.css">
+<style>
+.ph{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,28px);padding-top:clamp(40px,5vw,80px);align-items:start;row-gap:40px}
+.ph h1{grid-column:1 / 8;font-size:var(--step-giant);line-height:.82}
+.ph h1 span{color:var(--accent)}
+.band{grid-column:1 / -1;aspect-ratio:21/7;overflow:hidden}
+.band img{width:100%;height:100%;object-fit:cover;display:block;animation:kb 12s ease-out forwards}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
+.ph .lead{grid-column:8 / 13;align-self:end;font-size:22px;max-width:36ch}
+.side{grid-column:1 / 6;display:grid;gap:28px}
+.side .blk{background:var(--surface);padding:24px;display:grid;gap:6px}
+.side .blk h2{font-size:34px}
+.side .blk p{font-size:18px}
+.side .blk a{color:var(--accent)}
+form.f{grid-column:7 / 13;display:grid;gap:18px}
+form.f .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.thanks{grid-column:7 / 13;background:var(--chalk);color:var(--navy-ink);padding:32px;display:grid;gap:14px}
+.thanks h2{font-size:56px}
+.faq{padding-top:clamp(120px,12vw,200px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:32px}
+.faq h2{grid-column:1 / 6;font-size:clamp(48px,5vw,84px)}
+.faq .qs{grid-column:7 / 13;display:grid;gap:8px}
+.faq details{background:var(--surface);padding:0 20px}
+.faq summary{cursor:pointer;font-family:var(--display);font-size:28px;padding:18px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::after{content:"+";transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{font-size:18px;padding-bottom:20px;max-width:56ch}
+.tiers{width:100%;border-collapse:collapse;font-size:18px}
+.tiers th,.tiers td{text-align:left;padding:14px 0;border-bottom:1px solid #E6E3DE}
+.tiers th{font-weight:400;color:var(--muted)}
+.est{background:var(--chalk);color:var(--navy-ink);padding:24px;display:grid;gap:14px}
+.est h2{font-size:40px}
+.est .big{font-family:var(--display);font-size:56px;line-height:.9}
+.est select{background:#222;border:0;padding:12px;font-size:17px;color:#fff}
+.est input[type=range]{width:100%;accent-color:var(--red);height:40px}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.checks label{display:flex;gap:10px;align-items:center;background:var(--surface);padding:12px 14px;font-size:17px;cursor:pointer}
+.checks input{width:20px;height:20px;accent-color:var(--accent)}
+@media (max-width:960px){.ph h1,.ph .lead,.side,form.f,.thanks,.faq h2,.faq .qs{grid-column:1 / -1}form.f .two{grid-template-columns:1fr}}
+</style></head>
+<body data-page="contact"><header id="hdr"></header>
+<main>
+<section class="frame ph">
+  <h1>Contact us<span>.</span></h1>
+  <p class="lead">Questions about sizes, weights, an order or a custom bat? Write to us and a bat-maker will reply within one working day.</p>
+  <div class="band"><img src="img/stadium.jpg" alt="A cricket ground under floodlights"></div>
+  <div class="side">
+    <div class="blk rv"><h2>Email</h2><p><a href="mailto:hello@krickscricket.com">hello@krickscricket.com</a></p></div>
+    <div class="blk rv"><h2>WhatsApp</h2><p>Message us for help choosing a bat. Send a photo of your old bat and we'll match the weight and pick-up.</p></div>
+    <div class="blk rv"><h2>Hours</h2><p>Monday to Saturday, 10:00 to 19:00 India time (GMT+5:30)</p></div>
+    <div class="blk rv"><h2>Workshop</h2><p>New Delhi, India. Visits by appointment.</p></div>
+  </div>
+  <form class="f" id="form" novalidate>
+    <div class="two"><div class="field"><label for="n">Your name</label><input id="n" required autocomplete="name"></div><div class="field"><label for="e">Email</label><input id="e" type="email" required autocomplete="email"></div></div>
+    <div class="field"><label for="t">What is it about?</label><select id="t"><option>Choosing a bat</option><option>A custom bat</option><option>An order I've placed</option><option>Returns and repairs</option><option>Something else</option></select></div>
+    <div class="field"><label for="o">Order number (if you have one)</label><input id="o" autocomplete="off"></div>
+    <div class="field"><label for="m">Message</label><textarea id="m" required></textarea></div>
+    <p id="err" style="color:#B3261E;font-size:17px" hidden>Please add your name, a valid email and a message.</p>
+    <button class="btn" type="submit" style="justify-self:start">Send message <span class="ar">→</span></button>
+  </form>
+</section>
+<section class="frame faq" aria-labelledby="faqT"><h2 id="faqT" class="rv">Common questions</h2><div class="qs">
+<details class="rv"><summary>Do you ship outside India?</summary><p>Yes. We ship to the UK, Australia, New Zealand, the UAE, South Africa, the USA, Canada and more. Shipping and any import duties are shown at checkout before you pay.</p></details>
+<details class="rv"><summary>How long does delivery take?</summary><p>Stock bats leave us within 3 working days. Delivery takes 3–6 days in India and 7–12 days internationally. Custom bats take 10–14 days to make first.</p></details>
+<details class="rv"><summary>Can I return a bat?</summary><p>Unused bats in their original condition can be returned within 14 days. Engraved custom bats can't be returned unless they arrive damaged.</p></details>
+<details class="rv"><summary>Do I need to knock in my bat?</summary><p>Every English willow bat needs knocking in before it faces a hard ball. Add our knocking-in service on the product page and we'll do it before shipping.</p></details>
+<details class="rv"><summary>My bat has cracked. Can you help?</summary><p>Small surface cracks on the face are normal and can be repaired. Send us photos and we'll tell you whether it's a repair or a warranty case.</p></details>
+</div></section></main>
+<footer id="ftr"></footer>
+<script src="kricks.js"></script>
+<script>(function(){const $=s=>document.querySelector(s);
+$('#form').addEventListener('submit',e=>{e.preventDefault();const ok=$('#n').value.trim()&&/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('#e').value)&&$('#m').value.trim();$('#err').hidden=!!ok;if(!ok)return;
+ const name=K.esc($('#n').value.trim().split(' ')[0]);e.target.outerHTML=`<div class="thanks" role="status"><h2>Thanks, ${name}</h2><p style="font-size:19px">Your message is with us. We'll reply to ${K.esc($('#e').value)} within one working day.</p><a class="btn navy" href="leather-bats.html" style="justify-self:start">Keep browsing <span class="ar">→</span></a></div>`});
+})();</script>
+</body></html>

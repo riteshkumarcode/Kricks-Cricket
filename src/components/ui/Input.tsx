@@ -1,0 +1,31 @@
+import React from "react";
+import { clsx } from "clsx";
+
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string;
+}
+
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, label, error, id, ...props }, ref) => {
+    return (
+      <div className="field">
+        {label && <label htmlFor={id}>{label}</label>}
+        <input
+          ref={ref}
+          id={id}
+          className={clsx(
+            "w-full bg-[#F4F3F0] border-2 border-transparent px-4 py-3.5 text-lg rounded-none transition-colors duration-200 focus:outline-none focus:border-[#111111]",
+            error && "!border-[#B3261E]",
+            className
+          )}
+          {...props}
+        />
+        {error && <span className="text-sm text-[#B3261E]">{error}</span>}
+      </div>
+    );
+  }
+);
+
+Input.displayName = "Input";
+

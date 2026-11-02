@@ -1,0 +1,81 @@
+[
+  {
+    "id": "slide-1",
+    "order": 1,
+    "active": true,
+    "kick": "Leather bats",
+    "hl": [
+      "Built for",
+      "the big hit."
+    ],
+    "sub": "Grade 1 English willow, pressed and shaped by hand. Big edges, a low middle and a pick-up lighter than it weighs.",
+    "cta": "Shop leather bats",
+    "href": "/leather-bats",
+    "label": "Leather bats",
+    "card": {
+      "p": "pro-edition",
+      "k": "Bestseller"
+    },
+    "img": "/img/shot.jpg",
+    "imgPos": "50% 40%"
+  },
+  {
+    "id": "slide-2",
+    "order": 2,
+    "active": true,
+    "kick": "Customised bat",
+    "hl": [
+      "Your name",
+      "on the willow."
+    ],
+    "sub": "Pick the willow, the grip and the sticker colours. We engrave your name and number down the blade.",
+    "cta": "Design your bat",
+    "href": "/custom-bat",
+    "label": "Customised bat",
+    "card": {
+      "custom": true,
+      "k": "Made to order"
+    },
+    "img": "/img/whites.jpg",
+    "imgPos": "50% 30%"
+  },
+  {
+    "id": "slide-3",
+    "order": 3,
+    "active": true,
+    "kick": "Tennis bats",
+    "hl": [
+      "Play under",
+      "the lights."
+    ],
+    "sub": "Light Kashmir willow bats for box cricket, night leagues and the taped ball.",
+    "cta": "Shop tennis bats",
+    "href": "/tennis-bats",
+    "label": "Tennis bats",
+    "card": {
+      "p": "street",
+      "k": "Night-league pick"
+    },
+    "img": "/img/redsky.jpg"
+  },
+  {
+    "id": "slide-4",
+    "order": 4,
+    "active": true,
+    "kick": "Clubs & academies",
+    "hl": [
+      "Kit out",
+      "the whole XI."
+    ],
+    "sub": "Tiered pricing for clubs, schools and academies. Custom club stickers, coloured grips and batch knocking-in.",
+    "cta": "Request club quote",
+    "href": "/bulk-enquiry",
+    "label": "Club orders",
+    "card": {
+      "p": "club-pack",
+      "k": "Save up to 30%"
+    },
+    "img": "/img/ground.jpg",
+    "imgPos": "50% 60%"
+  }
+]

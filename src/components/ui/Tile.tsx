@@ -41,14 +41,13 @@ export const Tile: React.FC<TileProps> = ({
 }) => {
   const isAcc = product.drawingType && product.drawingType !== "bat";
 
-  const renderGraphic = () => {
+  const getGraphicSvg = () => {
     if (isAcc) {
-      const svg = generateItemSvg(
+      return generateItemSvg(
         product.drawingType || "gloves",
         product.color1 || "#F3EEE3",
         product.color2 || "#C3262C"
       );
-      return <div dangerouslySetInnerHTML={{ __html: svg }} />;
     }
 
     const batOptions: BatOptions = {
@@ -61,38 +60,45 @@ export const Tile: React.FC<TileProps> = ({
       grade: product.gradeLabel || "ENGLISH WILLOW",
       view: "face",
     };
-    const svg = generateBatSvg(batOptions);
-    return <div dangerouslySetInnerHTML={{ __html: svg }} />;
+    return generateBatSvg(batOptions);
   };
 
   return (
-    <div className={clsx("tile group relative", className)}>
-      <Link href={`/product/${product.slug}`} className="block">
-        <div className={clsx("pic relative", isAcc && "acc")}>
-          {product.badge && <span className="tag">{product.badge}</span>}
-          {renderGraphic()}
-        </div>
-        <h3 className="mt-3 group-hover:text-accent transition-colors">{product.name}</h3>
+    <article className={clsx("tile rv in", className)}>
+      <div className={clsx("pic", isAcc && "acc")}>
+        {product.badge && <span className="tag">{product.badge}</span>}
+        <Link
+          href={`/product/${product.slug}`}
+          aria-label={product.name}
+          style={{ display: "contents" }}
+          dangerouslySetInnerHTML={{ __html: getGraphicSvg() }}
+        />
+        {onQuickAdd && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              onQuickAdd(product);
+            }}
+            className="btn ink quick"
+          >
+            Quick add
+          </button>
+        )}
+      </div>
+
+      <Link href={`/product/${product.slug}`} style={{ textDecoration: "none" }}>
+        <h3>{product.name}</h3>
       </Link>
 
       <div className="meta">
-        <span className="soft text-base">{product.subTitle}</span>
+        <span className="soft">{product.subTitle}</span>
         <span className="price">
           <span>{formatMoney(product.price, currency)}</span>
-          {product.compareAtPrice && <s>{formatMoney(product.compareAtPrice, currency)}</s>}
+          {product.compareAtPrice ? <s>{formatMoney(product.compareAtPrice, currency)}</s> : null}
         </span>
       </div>
-
-      {onQuickAdd && (
-        <button
-          type="button"
-          onClick={() => onQuickAdd(product)}
-          className="btn ink quick absolute left-3 right-3 bottom-12 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
-        >
-          Quick add
-        </button>
-      )}
-    </div>
+    </article>
   );
 };
 

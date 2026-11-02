@@ -258,23 +258,30 @@ p {
 }
 
 .field label {
-  font-size: 16px;
-  color: var(--muted);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
 }
 
 .field input, .field select, .field textarea {
   width: 100%;
   background: var(--surface);
-  border: 2px solid transparent;
+  color: var(--ink);
+  border: 1.5px solid #DFDCD6;
   padding: 14px 16px;
   font-size: 18px;
   border-radius: 0;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.field input::placeholder, .field textarea::placeholder {
+  color: #8C8984;
 }
 
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: none;
-  border-color: var(--ink);
+  border-color: var(--accent);
+  background: #FFFFFF;
 }
 
 .field textarea {
@@ -2653,11 +2660,36 @@ input[type="range"] {
   font-size: 16px;
   color: #BDBAB4;
 }
-.sum .btn {
+.sum > .btn {
   width: 100%;
 }
 .sum input {
-  color: var(--ink);
+  color: #FFFFFF;
+}
+.sum input::placeholder {
+  color: #8C8984;
+}
+.chk-th {
+  width: 58px;
+  height: 72px;
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  flex: none;
+  overflow: hidden;
+  padding: 4px;
+}
+.chk-th > div {
+  display: contents;
+}
+.chk-th svg {
+  height: 90%;
+  width: auto;
+  transform: rotate(28deg);
+}
+.chk-th.acc svg {
+  height: 70%;
+  transform: none;
 }
 .ct .empty {
   grid-column: 1 / -1;

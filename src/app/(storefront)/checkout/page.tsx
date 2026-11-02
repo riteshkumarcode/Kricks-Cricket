@@ -285,14 +285,16 @@ export default function CheckoutPage() {
       <section className="frame ct checkout-layout" id="checkout-view" style={{ paddingBlock: "48px 96px" }}>
         {/* Left Column: Form Stepper */}
         <div>
-          <h1 style={{ fontSize: "clamp(36px, 4vw, 52px)", marginBottom: "32px" }}>
-            Checkout<span>.</span>
+          <h1 style={{ fontSize: "clamp(54px, 6vw, 88px)", lineHeight: 0.85, marginBottom: "36px" }}>
+            Checkout<span style={{ color: "var(--accent)" }}>.</span>
           </h1>
 
           <form className="f" id="checkout-form" onSubmit={handlePlaceOrder}>
             {/* Step 1: Customer Contact */}
             <div className="chk-step" style={{ borderBottom: "1px solid var(--line)", paddingBottom: "32px" }}>
-              <h2 style={{ fontSize: "24px", marginBottom: "16px" }}>1. Contact Details</h2>
+              <h2 style={{ fontSize: "28px", marginBottom: "18px", display: "flex", alignItems: "baseline", gap: "10px" }}>
+                <span style={{ color: "var(--accent)" }}>01.</span> Contact Details
+              </h2>
               <div className="field">
                 <label htmlFor="c-name">Full name</label>
                 <input
@@ -332,7 +334,9 @@ export default function CheckoutPage() {
 
             {/* Step 2: Shipping Address */}
             <div className="chk-step" style={{ borderBottom: "1px solid var(--line)", paddingBlock: "32px" }}>
-              <h2 style={{ fontSize: "24px", marginBottom: "16px" }}>2. Delivery Address</h2>
+              <h2 style={{ fontSize: "28px", marginBottom: "18px", display: "flex", alignItems: "baseline", gap: "10px" }}>
+                <span style={{ color: "var(--accent)" }}>02.</span> Delivery Address
+              </h2>
 
               <div className="field">
                 <label htmlFor="c-country">Country / Region</label>
@@ -340,7 +344,6 @@ export default function CheckoutPage() {
                   id="c-country"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
-                  style={{ background: "var(--surface)", border: "2px solid transparent", padding: "14px 16px" }}
                 >
                   {COUNTRIES.map((c) => (
                     <option key={c.code} value={c.code}>
@@ -413,7 +416,9 @@ export default function CheckoutPage() {
 
             {/* Step 3: Shipping Method Selection */}
             <div className="chk-step" style={{ borderBottom: "1px solid var(--line)", paddingBlock: "32px" }}>
-              <h2 style={{ fontSize: "24px", marginBottom: "16px" }}>3. Shipping Method</h2>
+              <h2 style={{ fontSize: "28px", marginBottom: "18px", display: "flex", alignItems: "baseline", gap: "10px" }}>
+                <span style={{ color: "var(--accent)" }}>03.</span> Shipping Method
+              </h2>
 
               <div style={{ display: "grid", gap: "12px" }}>
                 {shippingMethods.map((m) => (
@@ -424,9 +429,9 @@ export default function CheckoutPage() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      padding: "16px",
+                      padding: "16px 18px",
                       background: shippingMethodId === m.id ? "#ECEAE5" : "var(--surface)",
-                      border: shippingMethodId === m.id ? "2px solid var(--ink)" : "2px solid transparent",
+                      border: shippingMethodId === m.id ? "2px solid var(--ink)" : "1.5px solid #DFDCD6",
                       cursor: "pointer",
                     }}
                   >
@@ -437,13 +442,14 @@ export default function CheckoutPage() {
                         value={m.id}
                         checked={shippingMethodId === m.id}
                         onChange={() => setShippingMethodId(m.id)}
+                        style={{ accentColor: "var(--accent)", width: "18px", height: "18px" }}
                       />
                       <div>
-                        <b style={{ display: "block", fontSize: "17px" }}>{m.name}</b>
+                        <b style={{ display: "block", fontSize: "17px", color: "var(--ink)" }}>{m.name}</b>
                         <span style={{ fontSize: "14px", color: "var(--muted)" }}>{m.description}</span>
                       </div>
                     </div>
-                    <span className="price" style={{ fontWeight: 600, fontSize: "17px" }}>
+                    <span className="price" style={{ fontWeight: 600, fontSize: "17px", color: m.cost === 0 ? "var(--accent)" : "var(--ink)" }}>
                       {m.cost === 0 ? "Free" : formatPrice(m.cost)}
                     </span>
                   </label>
@@ -453,7 +459,9 @@ export default function CheckoutPage() {
 
             {/* Step 4: Payment Gateway Choice */}
             <div className="chk-step" style={{ borderBottom: "1px solid var(--line)", paddingBlock: "32px" }}>
-              <h2 style={{ fontSize: "24px", marginBottom: "16px" }}>4. Payment Method</h2>
+              <h2 style={{ fontSize: "28px", marginBottom: "18px", display: "flex", alignItems: "baseline", gap: "10px" }}>
+                <span style={{ color: "var(--accent)" }}>04.</span> Payment Method
+              </h2>
 
               <div style={{ display: "grid", gap: "12px" }}>
                 {currency === "INR" ? (
@@ -463,9 +471,9 @@ export default function CheckoutPage() {
                         display: "flex",
                         alignItems: "center",
                         gap: "12px",
-                        padding: "16px",
+                        padding: "16px 18px",
                         background: paymentGateway === "RAZORPAY" ? "#ECEAE5" : "var(--surface)",
-                        border: paymentGateway === "RAZORPAY" ? "2px solid var(--ink)" : "2px solid transparent",
+                        border: paymentGateway === "RAZORPAY" ? "2px solid var(--ink)" : "1.5px solid #DFDCD6",
                         cursor: "pointer",
                       }}
                     >
@@ -475,9 +483,10 @@ export default function CheckoutPage() {
                         value="RAZORPAY"
                         checked={paymentGateway === "RAZORPAY"}
                         onChange={() => setPaymentGateway("RAZORPAY")}
+                        style={{ accentColor: "var(--accent)", width: "18px", height: "18px" }}
                       />
                       <div>
-                        <b style={{ display: "block", fontSize: "17px" }}>Razorpay (UPI, Cards, Netbanking)</b>
+                        <b style={{ display: "block", fontSize: "17px", color: "var(--ink)" }}>Razorpay (UPI, Cards, Netbanking)</b>
                         <span style={{ fontSize: "14px", color: "var(--muted)" }}>
                           Pay instantly via Google Pay, PhonePe, Paytm, UPI QR, or Debit/Credit Cards.
                         </span>
@@ -489,9 +498,9 @@ export default function CheckoutPage() {
                         display: "flex",
                         alignItems: "center",
                         gap: "12px",
-                        padding: "16px",
+                        padding: "16px 18px",
                         background: paymentGateway === "COD" ? "#ECEAE5" : "var(--surface)",
-                        border: paymentGateway === "COD" ? "2px solid var(--ink)" : "2px solid transparent",
+                        border: paymentGateway === "COD" ? "2px solid var(--ink)" : "1.5px solid #DFDCD6",
                         cursor: codAllowed ? "pointer" : "not-allowed",
                         opacity: codAllowed ? 1 : 0.6,
                       }}
@@ -503,9 +512,10 @@ export default function CheckoutPage() {
                         disabled={!codAllowed}
                         checked={paymentGateway === "COD"}
                         onChange={() => setPaymentGateway("COD")}
+                        style={{ accentColor: "var(--accent)", width: "18px", height: "18px" }}
                       />
                       <div>
-                        <b style={{ display: "block", fontSize: "17px" }}>
+                        <b style={{ display: "block", fontSize: "17px", color: "var(--ink)" }}>
                           Cash on Delivery (COD) {codAllowed && <small style={{ color: "var(--accent)" }}>+₹99 handling</small>}
                         </b>
                         <span style={{ fontSize: "14px", color: "var(--muted)" }}>
@@ -522,9 +532,9 @@ export default function CheckoutPage() {
                       display: "flex",
                       alignItems: "center",
                       gap: "12px",
-                      padding: "16px",
+                      padding: "16px 18px",
                       background: paymentGateway === "STRIPE" ? "#ECEAE5" : "var(--surface)",
-                      border: paymentGateway === "STRIPE" ? "2px solid var(--ink)" : "2px solid transparent",
+                      border: paymentGateway === "STRIPE" ? "2px solid var(--ink)" : "1.5px solid #DFDCD6",
                       cursor: "pointer",
                     }}
                   >
@@ -534,9 +544,10 @@ export default function CheckoutPage() {
                       value="STRIPE"
                       checked={paymentGateway === "STRIPE"}
                       onChange={() => setPaymentGateway("STRIPE")}
+                      style={{ accentColor: "var(--accent)", width: "18px", height: "18px" }}
                     />
                     <div>
-                      <b style={{ display: "block", fontSize: "17px" }}>Credit / Debit Card (Stripe)</b>
+                      <b style={{ display: "block", fontSize: "17px", color: "var(--ink)" }}>Credit / Debit Card (Stripe)</b>
                       <span style={{ fontSize: "14px", color: "var(--muted)" }}>
                         Visa, Mastercard, American Express, Apple Pay &amp; Google Pay.
                       </span>
@@ -558,7 +569,7 @@ export default function CheckoutPage() {
                 id="place-order-btn"
                 className="btn"
                 disabled={isSubmitting}
-                style={{ width: "100%", minHeight: "56px", fontSize: "22px" }}
+                style={{ width: "100%", minHeight: "56px", fontSize: "24px" }}
               >
                 {isSubmitting ? "Securing order…" : `Pay ${formatPrice(grandTotal)}`} <span className="ar">→</span>
               </button>
@@ -574,28 +585,36 @@ export default function CheckoutPage() {
           <h2 id="chkSummary">Order Summary ({cart.length})</h2>
 
           {/* Line items thumbnail list */}
-          <div style={{ display: "grid", gap: "16px", marginBlock: "20px", maxHeight: "360px", overflowY: "auto" }}>
-            {cart.map((line, idx) => (
-              <div key={`${line.id}-${idx}`} style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-                <div style={{ width: "54px", height: "68px", background: "var(--surface)", display: "grid", placeItems: "center", flex: "none" }}>
-                  {renderThumbnail(line)}
+          <div style={{ display: "grid", gap: "16px", marginBlock: "12px", maxHeight: "360px", overflowY: "auto" }}>
+            {cart.map((line, idx) => {
+              const p = getProductById(line.id);
+              const isAcc = Boolean(line.drawingType || p?.cat === "acc");
+              return (
+                <div key={`${line.id}-${idx}`} style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+                  <div className={`chk-th ${isAcc ? "acc" : ""}`}>
+                    {renderThumbnail(line)}
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <b style={{ display: "block", fontSize: "17px", color: "#FFFFFF", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                      {line.name}
+                    </b>
+                    {line.opts && (
+                      <span style={{ fontSize: "13px", color: "#BDBAB4", display: "block", lineHeight: 1.35 }}>
+                        {line.opts}
+                      </span>
+                    )}
+                    <span style={{ fontSize: "13px", color: "#9C9993" }}>Qty: {line.qty}</span>
+                  </div>
+                  <span className="price" style={{ fontSize: "17px", fontWeight: 500, color: "#FFFFFF" }}>
+                    {formatPrice(line.price * line.qty)}
+                  </span>
                 </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <b style={{ display: "block", fontSize: "16px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                    {line.name}
-                  </b>
-                  {line.opts && <span style={{ fontSize: "13px", color: "var(--muted)", display: "block" }}>{line.opts}</span>}
-                  <span style={{ fontSize: "14px", color: "var(--muted)" }}>Qty: {line.qty}</span>
-                </div>
-                <span className="price" style={{ fontSize: "16px", fontWeight: 500 }}>
-                  {formatPrice(line.price * line.qty)}
-                </span>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Coupon Input */}
-          <form onSubmit={handleApplyCoupon} style={{ marginBlock: "20px", borderTop: "1px solid var(--line)", paddingTop: "18px" }}>
+          <form onSubmit={handleApplyCoupon} style={{ marginBlock: "8px", borderTop: "1px solid #2C2C2C", paddingTop: "18px" }}>
             <label htmlFor="chk-coupon" className="sr">
               Promo code
             </label>
@@ -605,17 +624,35 @@ export default function CheckoutPage() {
                 placeholder="Promo code (e.g. WELCOME10)"
                 value={couponInput}
                 onChange={(e) => setCouponInput(e.target.value)}
-                style={{ flex: 1, background: "var(--surface)", border: "2px solid transparent", padding: "10px 14px", fontSize: "16px" }}
+                style={{
+                  flex: 1,
+                  minWidth: 0,
+                  background: "#1C1C1C",
+                  border: "1.5px solid #3A3A3A",
+                  color: "#FFFFFF",
+                  padding: "10px 14px",
+                  fontSize: "15px",
+                }}
               />
-              <button type="submit" className="btn ink" style={{ padding: "0 18px", minHeight: "44px", fontSize: "18px" }}>
+              <button
+                type="submit"
+                className="btn"
+                style={{
+                  width: "auto",
+                  flex: "none",
+                  padding: "0 22px",
+                  minHeight: "46px",
+                  fontSize: "19px",
+                }}
+              >
                 Apply
               </button>
             </div>
-            {couponError && <p style={{ color: "#B3261E", fontSize: "14px", marginTop: "6px" }}>{couponError}</p>}
+            {couponError && <p style={{ color: "#FF6B5B", fontSize: "14px", marginTop: "6px" }}>{couponError}</p>}
             {appliedCoupon && (
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "8px", background: "#E8F5E9", padding: "8px 12px", fontSize: "14px", color: "#2E7D32" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "8px", background: "#1C2E1E", border: "1px solid #2E7D32", padding: "8px 12px", fontSize: "14px", color: "#81C784" }}>
                 <span>✓ {appliedCoupon.code} applied ({appliedCoupon.description})</span>
-                <button type="button" onClick={handleRemoveCoupon} style={{ background: "none", border: 0, cursor: "pointer", fontWeight: "bold" }}>
+                <button type="button" onClick={handleRemoveCoupon} style={{ background: "none", border: 0, color: "#FFFFFF", cursor: "pointer", fontWeight: "bold" }}>
                   ✕
                 </button>
               </div>
@@ -623,10 +660,10 @@ export default function CheckoutPage() {
           </form>
 
           {/* Pricing Totals */}
-          <dl style={{ borderTop: "1px solid var(--line)", paddingTop: "16px" }}>
+          <dl style={{ borderTop: "1px solid #2C2C2C", paddingTop: "16px" }}>
             <div>
               <dt>Items subtotal</dt>
-              <dd className="price">{formatPrice(subtotal)}</dd>
+              <dd className="price" style={{ color: "#FFFFFF" }}>{formatPrice(subtotal)}</dd>
             </div>
             {discountAmount > 0 && (
               <div>
@@ -638,23 +675,23 @@ export default function CheckoutPage() {
             )}
             <div>
               <dt>Shipping</dt>
-              <dd className="price">
+              <dd className="price" style={{ color: shippingCost === 0 ? "var(--accent)" : "#FFFFFF" }}>
                 {shippingCost === 0 ? "Free" : formatPrice(shippingCost)}
               </dd>
             </div>
             {paymentGateway === "COD" && (
               <div>
                 <dt>COD convenience fee</dt>
-                <dd className="price">{formatPrice(codFee)}</dd>
+                <dd className="price" style={{ color: "#FFFFFF" }}>{formatPrice(codFee)}</dd>
               </div>
             )}
-            <div className="tot" style={{ borderTop: "2px solid var(--ink)", marginTop: "14px", paddingTop: "14px" }}>
-              <dt>Total to pay</dt>
-              <dd className="price" id="checkout-total">{formatPrice(grandTotal)}</dd>
+            <div className="tot" style={{ borderTop: "1.5px solid #3A3A3A", marginTop: "14px", paddingTop: "16px", alignItems: "baseline" }}>
+              <dt style={{ color: "#FFFFFF" }}>Total to pay</dt>
+              <dd className="price" id="checkout-total" style={{ color: "var(--accent)" }}>{formatPrice(grandTotal)}</dd>
             </div>
           </dl>
 
-          <p style={{ fontSize: "13px", color: "var(--muted)", marginTop: "20px" }}>
+          <p style={{ fontSize: "13px", color: "#9C9993", marginTop: "12px", lineHeight: 1.5 }}>
             Orders dispatched from New Delhi workshop within 3 working days. Custom engraved bats take 10–14 days.
           </p>
         </aside>

@@ -192,16 +192,7 @@ export function OrderSuccessClient({
                     borderBottom: "1px solid var(--line)",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "60px",
-                      height: "76px",
-                      background: "var(--surface)",
-                      display: "grid",
-                      placeItems: "center",
-                      flex: "none",
-                    }}
-                  >
+                  <div className="chk-th">
                     {renderThumbnail(item)}
                   </div>
                   <div style={{ flex: 1 }}>
